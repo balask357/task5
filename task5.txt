@@ -1,0 +1,43 @@
+1.*inner join: Members and Loans*
+
+SELECT m.name, l.loan_date
+FROM members m
+INNER JOIN loans l ON m.member_id = l.member_id;
+
+2.*left join: All members, even if they haven't borrowed any books*
+
+SELECT m.name, l.loan_date
+FROM members m
+LEFT JOIN loans l ON m.member_id = l.member_id;
+
+3.*right join: All loans, including those not linked to members*
+
+SELECT m.name, l.loan_date
+FROM members m
+RIGHT JOIN loans l ON m.member_id = l.member_id;
+
+4.*full outer join using UNION*
+
+SELECT m.name, l.loan_date
+FROM members m
+LEFT JOIN loans l ON m.member_id = l.member_id
+
+UNION
+
+SELECT m.name, l.loan_date
+FROM members m
+RIGHT JOIN loans l ON m.member_id = l.member_id;
+
+5.*join books and categories(inner join)*
+
+SELECT b.title, c.category_name
+FROM books b
+JOIN categories c ON b.category_id = c.category_id;
+
+6.*list all loans with book title and member name*
+
+SELECT l.loan_date, b.title, m.name
+FROM loans l
+JOIN books b ON l.book_id = b.book_id
+JOIN members m ON l.member_id = m.member_id;
+
